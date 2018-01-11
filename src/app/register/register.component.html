@@ -1,0 +1,116 @@
+<form class="form-horizontal" #registerForm="ngForm" name="registerForm">
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="firstname">First Name:</label>
+    <div class="col-sm-3">
+      <input type="text" class="form-control" [(ngModel)]="registerDetails.FirstName" placeholder="Enter First Name" #firstname="ngModel"
+        name="firstname" required minlength="3">
+      <div *ngIf="firstname.errors && firstname.dirty" class="alert alert-danger">
+        <div [hidden]="!firstname.errors.required">
+          First Name is required!
+        </div>
+        <div [hidden]="!firstname.errors.minlength">
+          First Name minlength is 3!
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="lastname">Last Name:</label>
+    <div class="col-sm-3">
+      <input type="text" [(ngModel)]="registerDetails.LastName" class="form-control" placeholder="Enter Last Name" #lastname="ngModel"
+        name="lastname" required minlength="3" maxlength="10">
+
+      <div *ngIf="lastname.errors && lastname.dirty" class="alert alert-danger">
+        <div [hidden]="!lastname.errors.required">
+          Last Name is required!
+        </div>
+        <div [hidden]="!lastname.errors.minlength">
+          Last Name minlength is 3!
+        </div>
+        <div [hidden]="!lastname.errors.maxlength">
+          Last Name maxlength is 10!
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="email">Email:</label>
+    <div class="col-sm-3">
+      <input type="text" [(ngModel)]="registerDetails.Email" class="form-control" id="email" placeholder="Enter email" #email="ngModel"
+        name="email">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="lastname">User Name:</label>
+    <div class="col-sm-3">
+      <input type="text" class="form-control" [(ngModel)]="registerDetails.Username" placeholder="Enter User Name" #username="ngModel"
+        name="username">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="pwd">Password:</label>
+    <div class="col-sm-3">
+      <input type="text" class="form-control" [(ngModel)]="registerDetails.Password" id="pwd" placeholder="Enter password"
+        #pwd="ngModel" name="pwd"
+        pattern ="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+        >
+        <div *ngIf="pwd.errors && pwd.dirty"  class="alert alert-danger">
+          
+          
+                  <div [hidden]="!pwd.errors.pattern">
+                    Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters
+                  </div>
+                </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="age">Age:</label>
+    <div class="col-sm-3">
+      <input type="text" class="form-control"
+       [(ngModel)]="registerDetails.Age" placeholder="Enter Age" #age="ngModel" name="age"
+        pattern="[0-9]{2}"
+        >
+      <div *ngIf="age.errors && age.dirty" class="alert alert-danger">
+
+
+        <div [hidden]="!age.errors.pattern">
+          Invalid age
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="gender">Gender:</label>
+    <div class="col-sm-3">
+      <span *ngFor="let g of genderList">
+        <input type="radio" name="gender" [value]="g.value" #gender="ngModel" [(ngModel)]="registerDetails.Gender"> {{g.text}}
+      </span>
+
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="country">Country:</label>
+    <div class="col-sm-3">
+      <select class="form-control" #country="ngModel" [(ngModel)]="registerDetails.Country" name="country">
+        <option [value]="c.value" *ngFor="let c of countries">{{c.text}}</option>
+      </select>
+    </div>
+  </div>
+
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-3">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" name="terms" #terms="ngModel" [(ngModel)]="registerDetails.AgreeTerms"> I Agree Terms and Conditions</label>
+      </div>
+    </div>
+  </div>
+  <div class="form-group" >
+    <div class="col-sm-offset-2 col-sm-3">
+      <button type="button" [disabled]="!registerForm.form.valid" class="btn btn-primary" name="btnRegister" (click)="registerUser()">Register</button>
+    </div>
+  </div>
+</form>
+<!-- {{registerDetails|json}} -->

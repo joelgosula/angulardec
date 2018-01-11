@@ -1,0 +1,80 @@
+<!-- <div class="product-grid home-page-product-grid row">
+  <div class="col-md-12">
+    <div class="title panel-heading">
+      <h2></h2>
+    </div>
+  </div>
+
+  <div class="item-box product-grid col-xs-12 col-sm-4 col-md-3 product-align clearfix" *ngFor="let x of flipkartproducts">
+    <div class="thumbnail">
+      <div class="product-item clearfix" data-productid="18">
+        <div class="picture">
+          <a href="#" title="Show details for HTC One M8 Android L 5.0 Lollipop">
+            <img alt="Picture of HTC One M8 Android L 5.0 Lollipop" [src]="x.img_url">
+          </a>
+        </div>
+        <div class="caption">
+          <div class="details">
+            <h3 class="product-title">
+              <a href="#">{{x.name}}</a>
+            </h3>
+            <p class="description">
+              {{x.description}}
+            </p>
+            <div class="add-info">
+              <div class="prices">
+                <span class="price actual-price">{{x.price}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div> -->
+<nav aria-label="Page navigation">
+  <ul class="pagination">
+    <li>
+      <a href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li *ngFor="let p of pagesArray" (click)="changePage(p)"><a href="#">{{p}}</a></li>
+ 
+    <li>
+      <a href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+<table class="table table-hover">
+  <tbody>
+    <tr *ngFor="let y of flipkartproducts|slice:pager.startIndex:pager.endIndex">
+      <td>{{y.name |uppercase}}</td>
+  
+      <td>{{y.description |lowercase }}</td>
+      <td>{{y.price | currency :'EUR'}}</td>
+      <td>{{y.dateOfPurchase |date:'MM,dd,yyyy hh:mm:ss'}}</td>
+
+    </tr>
+  </tbody>
+</table>
+<nav aria-label="Page navigation">
+  <ul class="pagination">
+    <li>
+      <a href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li *ngFor="let p of pagesArray"><a href="#">{{p}}</a></li>
+ 
+    <li>
+      <a href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+

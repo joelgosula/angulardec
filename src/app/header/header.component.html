@@ -1,0 +1,54 @@
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+
+      <a class="navbar-brand" href="#">
+        <img [src]="sitenav.logo" width="80" height="35">
+      </a>
+      <a class="navbar-brand" href="#"> {{sitenav.sitename}}</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <!--For ngIf based loading of pages-->
+      <!-- <li *ngFor="let x of sitenav.centerContent"><a href="javascript:void(0)" (click)="loadPage(x)" >{{x}}</a></li> -->
+      <!-- end of *ngIf based loading-->
+
+      <!--Begin of Step 3 in routing-->
+      <li *ngFor="let x of sitenav.centerContent">
+        <a [routerLink]="x">{{x}}</a>
+      </li> 
+
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li *ngFor="let p of sitenav.rightContent">
+        <!--For ngIf based loading of pages-->
+        <!-- <a href="javascript:void(0)" (click)="loadPage(p.displayname)"><span class="{{p.icon}}"></span> {{p.displayname}}</a></li> -->
+        <!-- end of *ngIf based loading-->
+        <!--Begin of Step 3 in routing-->
+        <a [routerLink]="p.displayname">
+          <span class="{{p.icon}}"></span> {{p.displayname}}</a>
+      </li> 
+      <!-- end of step 3 -->
+    </ul>
+  </div>
+</nav>
+<!--Step4 -->
+<router-outlet></router-outlet>
+<!-- -->
+
+<!--ngIf based loading-->
+<!-- <div class="container">
+  <div *ngIf="page=='Signup'">
+    <app-register></app-register>
+  </div>
+  <div *ngIf="page=='Login'">
+    <app-login></app-login>
+  </div>
+  <div *ngIf="page=='Products'">
+    <app-products></app-products>
+  </div>
+  <div *ngIf="page=='Home'">
+    <app-home></app-home>
+  </div>
+
+</div> -->
+<!-- <app-products></app-products> -->
